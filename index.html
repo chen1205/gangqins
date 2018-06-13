@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style: none;
+            position: absolute;
+            bottom: 100px;
+            left: 200px;
+        }
+        li{
+            width: 150px;
+            height: 60px;
+            border: 1px solid #cccccc;
+            float: left;
+
+
+        }
+        i{
+            width: 150px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            position: absolute;
+            font-style: normal;
+            z-index: 99;
+        }
+        span{
+            width: 150px;
+            height: 60px;
+            background-color: #5097ff;
+            position: absolute;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="生日快乐.jpg" alt="">
+<ul>
+    <li><span></span><i>1</i></li>
+    <li><span></span><i>2</i></li>
+    <li><span></span><i>3</i></li>
+    <li><span></span><i>4</i></li>
+    <li><span></span><i>5</i></li>
+    <li><span></span><i>6</i></li>
+    <li><span></span><i>7</i></li>
+</ul>
+<audio src="../m/1.mp3"></audio>
+<audio src="../m/2.mp3"></audio>
+<audio src="../m/3.mp3"></audio>
+<audio src="../m/4.mp3"></audio>
+<audio src="../m/5.mp3"></audio>
+<audio src="../m/6.mp3"></audio>
+<audio src="../m/7.mp3"></audio>
+<p>小星星 <br>
+    1155665-4433221-554432-5544332
+</p>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script>
+    var arr=['red','orange','yellow','green','cyan','blue','purple'];
+    var audio=document.querySelectorAll('audio');
+
+    $('span').each(function (i,e) {
+        $(e).css('background',arr[i])
+    });
+    $('li').hover(function () {
+        var index=$(this).index();
+        $(this).children('span').stop().animate({top:-500},300);
+        audio[index].load();
+        audio[index].play();
+    },function () {
+        $(this).children('span').stop().animate({top:0},300)
+    });
+
+    window.onkeydown=function (e) {
+        var ev=e||event;
+        if(ev.keyCode>=49&&ev.keyCode<=55){
+             var bb=ev.keyCode-49;
+            $('li').eq(bb).children('span').stop().animate({top:-500},300);
+            audio[bb].load();
+            audio[bb].play();
+        }
+    };
+    window.onkeyup=function (e) {
+        var ev=e||event;
+        var bb=ev.keyCode-49;
+        $('li').eq(bb).children('span').stop().animate({top:0},300)
+    }
+</script>
+    
+</body>
+</html>
